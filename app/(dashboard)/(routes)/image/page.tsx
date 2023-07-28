@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { Empty } from '@/components/Empty';
 import { Loader } from '@/components/Loader';
 
+import { useProModal } from '@/hooks/useProModal';
+
 import { formSchema, amountOptions, resolutionOptions } from './constants';
 import { Card, CardFooter } from "@/components/ui/card";
 
@@ -30,6 +32,7 @@ const ImagePage = () => {
       resolution: '512x512',
     },
   });
+  const proModal = useProModal();
   const [images, setImages] = useState<string[]>([]);
 
   const isLoading = form.formState.isSubmitting;
@@ -44,9 +47,10 @@ const ImagePage = () => {
 
       setImages(urls);
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }

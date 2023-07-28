@@ -1,16 +1,24 @@
 "use client";
 
+interface SidebarProps {
+  apiLimitCount: number;
+}
+
 import Link from "next/link";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
 
 import { cn } from '@/lib/utils';
 
+import FreeCounter from '@/components/FreeCounter';
+
 import MainMenu from './MainMenu';
 
 const montserrat = Montserrat({ weight: '600', subsets: ['latin'] })
 
-const Sidebar = () => {
+const Sidebar = ({
+  apiLimitCount = 0,
+} : SidebarProps) => {
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
@@ -28,6 +36,9 @@ const Sidebar = () => {
         </Link>
         <MainMenu />
       </div>
+      <FreeCounter
+        apiLimitCount={apiLimitCount}
+      />
     </div>
   )
 }

@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { Empty } from '@/components/Empty';
 import { Loader } from '@/components/Loader';
 
+import { useProModal } from '@/hooks/useProModal';
+
 import { formSchema } from './constants';
 
 import Messages from './Messages';
@@ -29,6 +31,7 @@ const CodePage = () => {
       prompt: '',
     },
   });
+  const proModal = useProModal();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
   const isLoading = form.formState.isSubmitting;
@@ -47,9 +50,10 @@ const CodePage = () => {
 
       setMessages((current) => [...current, userMessage, response.data]);
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
