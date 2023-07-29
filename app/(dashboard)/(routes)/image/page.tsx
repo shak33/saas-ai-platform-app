@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { toast } from 'react-hot-toast';
 
 import Heading from '@/components/Heading';
 import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
@@ -50,6 +51,8 @@ const ImagePage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error('Something went wrong. Please try again.');
       }
     } finally {
       router.refresh();

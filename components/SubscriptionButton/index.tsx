@@ -6,6 +6,7 @@ interface SubscriptionButtonProps {
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 import { Zap } from 'lucide-react';
 
@@ -23,7 +24,7 @@ export const SubscriptionButton = ({
 
       window.location.href = response.data.url;
     } catch (error: any) {
-      console.log('Billing error', error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
     }

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 import { Check, Zap } from 'lucide-react';
 
@@ -20,18 +21,18 @@ import { Button } from '@/components/ui/button';
 
 export const ProModal = () => {
   const proModal = useProModal();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSusbcribe = async () => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const reponse = await axios.get('/api/stripe');
 
       window.location.href = reponse.data.url;
     } catch (error: any) {
-      console.log('Stripe client error', error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
   return (
@@ -76,6 +77,7 @@ export const ProModal = () => {
             className="pt-2"
           >
             <Button
+              disabled={isLoading}
               size="lg"
               variant="premium"
               className="w-full"
