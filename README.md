@@ -1,34 +1,104 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Tech stack:
 
-## Getting Started
+- React
+- Next.js
+- TypeScript
+- Prisma
+- MySQL
+- Tailwind CSS
 
-First, run the development server:
+### Utilities/Services:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+- Clerk
+- Stripe
+- Open AI
+- Replicate AI
+
+### Hosting and Deployment:
+- Vercel
+- PlanetScale
+
+
+### Features:
+
+- Tailwind design
+- Tailwind animations and effects
+- Full responsiveness
+- Clerk Authentication (Email, Google, 9+ Social Logins)
+- Client form validation and handling using react-hook-form
+- Server error handling using react-toast
+- Image Generation Tool (Open AI)
+- Video Generation Tool (Replicate AI)
+- Conversation Generation Tool (Open AI)
+- Music Generation Tool (Replicate AI)
+- Page loading state
+- Stripe monthly subscription
+- Free tier with API limiting
+- How to write POST, DELETE, and GET routes in route handlers (app/api)
+- How to fetch data in server react components by directly accessing database (WITHOUT API! like Magic!)
+- How to handle relations between Server and Child components!
+- How to reuse layouts
+- Folder structure in Next 13 App Router
+
+### Prerequisites
+
+**Node version 18.x.x**
+
+### Cloning the repository
+
+```shell
+git clone git@github.com:shak33/out-of-bore-saas-ai-platform-app.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Setup .env by coping existing .env.example file
 
-## Learn More
+```js
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+  
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+      
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
 
-To learn more about Next.js, take a look at the following resources:
+OPENAI_API_KEY=
+OPENAI_ORGANIZATION_ID=
+    
+REPLICATE_API_TOKEN=
+      
+DATABASE_URL= 
+  
+STRIPE_API_KEY=
+STRIPE_WEBHOOK_SECRET=
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Setup Prisma
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Add MySQL Database (I used PlanetScale)
 
-## Deploy on Vercel
+```shell
+npx prisma db push
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Start the app
+
+```shell
+npm run dev
+```
+
+### Available commands
+
+Running commands with npm `npm run [command]`
+
+| command         | description                              |
+| :-------------- | :--------------------------------------- |
+| `dev`           | Starts a development instance of the app |
